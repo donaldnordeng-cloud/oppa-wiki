@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPPA Legislative Framework — NZ Organic Regulatory Wiki</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f0e8;
+    --cream: #ede8d8;
+    --sage: #5a7a5a;
+    --rust: #8b4a2a;
+    --gold: #b8960a;
+    --slate: #4a5568;
+    --muted: #8a8070;
+    --rule: #d4ccb8;
+
+    --tag-primary: #2d5016;
+    --tag-primary-bg: #e8f0e0;
+    --tag-secondary: #3d2800;
+    --tag-secondary-bg: #f5ead0;
+    --tag-interface: #1a3a5c;
+    --tag-interface-bg: #dce8f5;
+    --tag-parallel: #4a1a4a;
+    --tag-parallel-bg: #f0e0f0;
+    --tag-enabling: #1a4a4a;
+    --tag-enabling-bg: #d8f0f0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(255,255,255,0.04) 39px,
+      rgba(255,255,255,0.04) 40px
+    );
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 0.9rem;
+  }
+
+  h1 span {
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+    color: #b8b0a0;
+    max-width: 560px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .header-stat {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: #888;
+    letter-spacing: 0.06em;
+  }
+
+  .header-stat strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.15rem;
+  }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.2rem;
+    align-items: center;
+  }
+
+  .legend-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── Section headings ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+
+  .section-icon {
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
+
+  /* ── Tags ── */
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.18em 0.65em;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .tag-primary    { color: var(--tag-primary);    background: var(--tag-primary-bg); }
+  .tag-secondary  { color: var(--tag-secondary);  background: var(--tag-secondary-bg); }
+  .tag-interface  { color: var(--tag-interface);  background: var(--tag-interface-bg); }
+  .tag-parallel   { color: var(--tag-parallel);   background: var(--tag-parallel-bg); }
+  .tag-enabling   { color: var(--tag-enabling);   background: var(--tag-enabling-bg); }
+
+  /* ── Accordion entries ── */
+  .entry {
+    border: 1px solid var(--rule);
+    background: #fff;
+    margin-bottom: 0.5rem;
+    transition: box-shadow 0.18s ease;
+  }
+
+  .entry:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  .entry.open {
+    box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+    border-color: #c0b89a;
+  }
+
+  .entry-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.9rem 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+
+  .entry-header::-webkit-details-marker { display: none; }
+
+  .entry-toggle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-top: 0.18rem;
+    transition: transform 0.2s ease;
+  }
+
+  .entry.open .entry-toggle {
+    transform: rotate(90deg);
+  }
+
+  .entry-top {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .entry-title-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .entry-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .entry-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .entry-summary {
+    font-size: 0.88rem;
+    color: var(--slate);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* Body of entry */
+  .entry-body {
+    display: none;
+    padding: 0 1.1rem 1.1rem 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .entry.open .entry-body {
+    display: block;
+    animation: fadeIn 0.18s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+    margin-top: 0.9rem;
+  }
+
+  @media (max-width: 600px) {
+    .body-grid { grid-template-columns: 1fr; }
+  }
+
+  .body-section {
+    margin-top: 0.9rem;
+  }
+
+  .body-section h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.45rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.25rem;
+  }
+
+  .body-section p, .body-section li {
+    font-size: 0.87rem;
+    color: #3a3a38;
+    line-height: 1.55;
+  }
+
+  .body-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .body-section ul li {
+    padding-left: 1em;
+    position: relative;
+    margin-bottom: 0.2rem;
+  }
+
+  .body-section ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+
+  .section-ref {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--sage);
+    background: var(--tag-primary-bg);
+    padding: 0.1em 0.5em;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .entry-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--sage);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    letter-spacing: 0.04em;
+  }
+
+  .entry-link:hover { color: var(--rust); }
+
+  .anchor-note {
+    font-size: 0.82rem;
+    color: var(--rust);
+    font-style: italic;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    background: #fdf5f0;
+    border-left: 2px solid var(--rust);
+  }
+
+  /* OPPA main entry special styling */
+  .entry.oppa-main {
+    border: 2px solid var(--sage);
+    background: #f8fbf4;
+  }
+
+  .entry.oppa-main .entry-name {
+    color: var(--sage);
+  }
+
+  /* Footer */
+  footer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="header-eyebrow">New Zealand Organic Regulatory Framework</p>
+    <h1>OPPA <span>&</span> the Legislative Ecosystem</h1>
+    <p class="header-sub">An interlinking reference guide to the Organic Products and Production Act 2023 and the legislation it connects with, draws from, and amends.</p>
+    <div class="header-meta">
+      <div class="header-stat"><strong>1</strong> Principal Act</div>
+      <div class="header-stat"><strong>2</strong> Primary Regulations</div>
+      <div class="header-stat"><strong>9+</strong> Linked Acts</div>
+      <div class="header-stat"><strong>3 Oct 2025</strong> System in force</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Legend -->
+  <div class="legend">
+    <span class="legend-label">Relationship types</span>
+    <span class="tag tag-primary">Primary Legislation</span>
+    <span class="tag tag-secondary">Secondary Legislation</span>
+    <span class="tag tag-interface">Definitional Dependency</span>
+    <span class="tag tag-parallel">Parallel Regime</span>
+    <span class="tag tag-enabling">Enabling / Constitutional</span>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 1: OPPA ITSELF ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">⚖</span>
+    <h2>The Anchor Act</h2>
+  </div>
+
+  <div class="entry oppa-main" id="oppa">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Organic Products and Production Act 2023</span>
+          <span class="entry-year">2023 No 14</span>
+          <span class="tag tag-primary">Primary Legislation</span>
+        </div>
+        <p class="entry-summary">The anchor Act. Creates the legal framework for organic standards, operator approval, cost recovery, and enforcement in New Zealand.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Purpose &amp; Scope</h4>
+            <p>Establishes a mandatory regulatory system for anyone describing products as "organic" in trade. Creates rules for domestic production, processing, labelling, and export organic claims. Mandates operator approval through MPI-recognised entities.</p>
+          </div>
+          <div class="body-section">
+            <h4>Key Parts</h4>
+            <ul>
+              <li>Part 1 — Organic standards &amp; operator approval</li>
+              <li>Part 2 — Imports (organic equivalence)</li>
+              <li>Part 3 — Exports &amp; official assurances</li>
+              <li>Part 4 — Cost recovery</li>
+              <li>Part 5 — Enforcement &amp; officers</li>
+              <li>Part 6 — Regulation-making powers</li>
+              <li>Part 7 — Advisory council, reviews, automation</li>
+              <li>Part 8 — Consequential amendments</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Key Cross-links</h4>
+            <ul>
+              <li>Draws definitions from Food Act 2014, ACVM Act 1997, Wine Act 2003</li>
+              <li>Consequentially amends Dairy Industry Restructuring Act 2001</li>
+              <li>Parallel system to Animal Products Act 1999</li>
+              <li>Enforcement model mirrors Food Act 2014</li>
+              <li>Treaty obligations mirror Legislation Act 2019 standards</li>
+            </ul>
+          </div>
+          <div class="body-section">
+            <h4>Administering Agency</h4>
+            <p>Ministry for Primary Industries (MPI / NZ Food Safety). Regulations made on recommendation of Minister of Agriculture.</p>
+          </div>
+        </div>
+      </div>
+      <div class="body-section">
+        <h4>Regulatory Powers</h4>
+        <p>Sections 128–138 provide the regulation-making framework. Sections 133–135 and 138 are the head powers for the Organic Products and Production Regulations 2025 and Organic Standards Regulations 2025. Section 128 requires Māori consultation before regulations are recommended.</p>
+      </div>
+      <p class="anchor-note">This is the anchor document. All other entries in this wiki relate to this Act.</p>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/2023/0014/latest/whole.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 2: SECONDARY LEGISLATION ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">📋</span>
+    <h2>Secondary Legislation Made Under OPPA</h2>
+  </div>
+
+  <div class="entry" id="oppr">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Organic Products and Production Regulations 2025</span>
+          <span class="entry-year">SL 2025/196 · In force 3 Oct 2025</span>
+          <span class="tag tag-secondary">Secondary Legislation</span>
+        </div>
+        <p class="entry-summary">The process regulations. Governs operator approval, organic management plans, recognised entities, tracing and recall, and enforcement procedures.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Made Under</h4>
+            <p>Sections 133–135 and 138 of OPPA 2023. Made on advice and consent of Executive Council; recommended by Minister of Agriculture after Māori consultation per <span class="section-ref">s.128 OPPA</span>.</p>
+          </div>
+          <div class="body-section">
+            <h4>Key Content</h4>
+            <ul>
+              <li>Operator application process &amp; approval criteria</li>
+              <li>Organic management plan requirements (Schedule 3)</li>
+              <li>Group operator rules</li>
+              <li>Recognised entity obligations &amp; competency assessments</li>
+              <li>Tracing, recall, and simulation requirements</li>
+              <li>Suspension, cancellation, and appeal process</li>
+              <li>Cost recovery mechanisms</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Cross-references to OPPA</h4>
+            <ul>
+              <li><span class="section-ref">s.19</span> — operator approval decisions</li>
+              <li><span class="section-ref">s.27(1)</span> — renewal of approval</li>
+              <li><span class="section-ref">s.51</span> — proposed refusal/suspension process</li>
+              <li><span class="section-ref">s.134</span> — tracing and recall obligations</li>
+            </ul>
+          </div>
+          <div class="body-section">
+            <h4>Relationship to Organic Standards Regulations</h4>
+            <p>Organic Standards Regulations 2025 sets the <em>what</em> of organic compliance. These regulations set the <em>how</em> of operator oversight and administration. The two instruments together operationalise the full OPPA system.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/secondary-legislation/pco-drafted/2025/196/en/latest/" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <div class="entry" id="osr">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Organic Standards Regulations 2025</span>
+          <span class="entry-year">SL 2025/197 · In force 3 Oct 2025</span>
+          <span class="tag tag-secondary">Secondary Legislation</span>
+        </div>
+        <p class="entry-summary">The National Organic Standard. Sets the technical requirements for organic production, processing, split production, conversion periods, and prohibited inputs.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Made Under</h4>
+            <p>OPPA 2023, following Cabinet approval on 1 November 2023 and gazetting October 2025. This is the instrument that gives legal effect to New Zealand's National Organic Standard.</p>
+          </div>
+          <div class="body-section">
+            <h4>Key Content</h4>
+            <ul>
+              <li>Organic principles (reg. 9)</li>
+              <li>Crop, livestock, aquaculture, and wild harvest standards</li>
+              <li>Conversion periods for land and production units</li>
+              <li>Split production rules</li>
+              <li>Processing and handling standards</li>
+              <li>Permitted and prohibited substances framework</li>
+              <li>Operator boundaries and organic management plan requirements</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Definitional Dependencies</h4>
+            <ul>
+              <li>"food" and "package" from <span class="section-ref">s.9 / s.8(1) Food Act 2014</span></li>
+              <li>"veterinary medicine" from <span class="section-ref">s.2(1) ACVM Act 1997</span></li>
+              <li>"feed", "feed additive", "animal nutrient" from <span class="section-ref">ACVM (Exemptions) Regs 2011 r.3</span></li>
+              <li>"food additive" from <span class="section-ref">ANZ Food Standards Code std. 1.1.2–11</span></li>
+              <li>"grape wine" from <span class="section-ref">s.4(1) Wine Act 2003</span></li>
+            </ul>
+          </div>
+          <div class="body-section">
+            <h4>Supplementary Notices</h4>
+            <p>OPPA provides for the chief executive to issue supplementary notices that add to or modify organic standards without full regulation-making. Consultation on an Organic Notice on Inputs was open in late 2025.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/secondary-legislation/pco-drafted/2025/197/en/latest/" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 3: DEFINITIONAL DEPENDENCIES ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">🔗</span>
+    <h2>Acts Providing Definitions Used in the OPPA System</h2>
+  </div>
+
+  <div class="entry" id="food">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Food Act 2014</span>
+          <span class="entry-year">2014 No 32 · MPI</span>
+          <span class="tag tag-interface">Definitional Dependency</span>
+          <span class="tag tag-parallel">Parallel Regime</span>
+        </div>
+        <p class="entry-summary">New Zealand's primary food safety legislation. Provides the definition of "food" and "package" imported directly into the Organic Standards Regulations 2025, and runs as a parallel regulatory regime for food businesses that also hold organic approval.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Definitions Imported into OPPA System</h4>
+            <ul>
+              <li><strong>"food"</strong> — <span class="section-ref">s.9 Food Act 2014</span>, imported into Organic Standards Regs 2025 r.3</li>
+              <li><strong>"package" / "packaging"</strong> — <span class="section-ref">s.8(1) Food Act 2014</span>, imported into Organic Standards Regs 2025 r.3</li>
+            </ul>
+          </div>
+          <div class="body-section">
+            <h4>Parallel Regime Interface</h4>
+            <p>Organic food operators typically require approval under both Acts simultaneously. Food Act registration/verification does not confer organic approval, and vice versa. MPI administers both systems but through separate recognition and approval pathways.</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Enforcement Model Adopted by OPPA</h4>
+            <p>OPPA's compliance and enforcement architecture (organic products officers, powers of entry, infringement offences, injunctions) is modelled substantially on the Food Act 2014 enforcement framework — consistent terminology and powers were deliberately aligned.</p>
+          </div>
+          <div class="body-section">
+            <h4>Food Standards Code</h4>
+            <p>The Australia New Zealand Food Standards Code operates under the Food Act framework. Organic Standards Regs 2025 imports the "food additive" definition from <span class="section-ref">Code std. 1.1.2–11</span>, connecting OPPA to the joint FSANZ regulatory system.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/2014/0032/latest/DLM2995811.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <div class="entry" id="acvm">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Agricultural Compounds and Veterinary Medicines Act 1997</span>
+          <span class="entry-year">1997 No 87 · MPI</span>
+          <span class="tag tag-interface">Definitional Dependency</span>
+          <span class="tag tag-parallel">Parallel Regime</span>
+        </div>
+        <p class="entry-summary">Governs agricultural compounds and veterinary medicines. Provides three foundational definitions imported into the Organic Standards Regulations, and operates as a parallel inputs-control regime.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Definitions Imported into OPPA System</h4>
+            <ul>
+              <li><strong>"veterinary medicine"</strong> — <span class="section-ref">s.2(1) ACVM Act 1997</span></li>
+              <li><strong>"feed"</strong> — <span class="section-ref">r.3 ACVM (Exemptions &amp; Prohibited Substances) Regs 2011</span></li>
+              <li><strong>"feed additive"</strong> — <span class="section-ref">r.3 ACVM (Exemptions &amp; Prohibited Substances) Regs 2011</span></li>
+              <li><strong>"animal nutrient"</strong> — <span class="section-ref">r.3 ACVM (Exemptions &amp; Prohibited Substances) Regs 2011</span></li>
+            </ul>
+          </div>
+          <div class="body-section">
+            <h4>Significance</h4>
+            <p>Because organic standards restrict what inputs operators may use, the ACVM-derived definitions of what constitutes a veterinary medicine, feed, or feed additive determine the scope of organic compliance for livestock operations. ACVM product registrations can therefore affect organic eligibility.</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Parallel Regime Interface</h4>
+            <p>ACVM approval of a compound does not make it organic-approved. An operator must comply with both regimes: a product must be both ACVM-registered (or exempt) and consistent with the organic standard. The two systems can restrict use independently of each other.</p>
+          </div>
+          <div class="body-section">
+            <h4>Connected Secondary Legislation</h4>
+            <ul>
+              <li>ACVM (Exemptions and Prohibited Substances) Regs 2011 — directly cross-referenced</li>
+              <li>ACVM (Fees) Regs 2016</li>
+              <li>Secondary Legislation Confirmation Acts — confirm ACVM secondary legislation periodically</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/1997/0087/latest/DLM414577.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <div class="entry" id="wine">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Wine Act 2003</span>
+          <span class="entry-year">2003 No 114 · MPI</span>
+          <span class="tag tag-interface">Definitional Dependency</span>
+        </div>
+        <p class="entry-summary">Regulates the production and export of wine in New Zealand. Provides the definition of "grape wine" imported into the Organic Standards Regulations 2025.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Definition Imported</h4>
+            <p><strong>"grape wine"</strong> — <span class="section-ref">s.4(1) Wine Act 2003</span> imported into Organic Standards Regs 2025 r.3. This scopes the application of organic wine production standards.</p>
+          </div>
+          <div class="body-section">
+            <h4>Significance</h4>
+            <p>New Zealand has a significant organic wine sector with major export markets (EU, UK, USA). Organic wine certification under OPPA must align with the underlying product definition from the Wine Act, ensuring regulatory coherence across the two systems.</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Export Market Interface</h4>
+            <p>Organic wine exported to the EU or UK must meet both Wine Act export requirements and OPPA operator approval. MPI issues official assurances under <span class="section-ref">OPPA Part 3</span> that reference compliance across both frameworks.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/2003/0114/latest/DLM222446.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 4: CONSEQUENTIAL AMENDMENTS ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">✏</span>
+    <h2>Acts Consequentially Amended by OPPA (Part 8)</h2>
+  </div>
+
+  <div class="entry" id="dira">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Dairy Industry Restructuring Act 2001</span>
+          <span class="entry-year">2001 No 51 · MBIE &amp; MPI</span>
+          <span class="tag tag-primary">Consequential Amendment</span>
+        </div>
+        <p class="entry-summary">Governs the structure of the NZ dairy industry including Fonterra. Consequentially amended by OPPA Part 8 to ensure that the DIRA's existing definition of "organic milk" does not conflict with the new national organic standard.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Nature of Amendment</h4>
+            <p>OPPA Part 8 inserted a clause (originally clause 123 in the Bill) to ensure DIRA regulations defining "organic milk" do not conflict with the organic standards established under OPPA. This was a specific issue identified during the select committee process.</p>
+          </div>
+          <div class="body-section">
+            <h4>Sector Relevance</h4>
+            <p>Dairy is the largest category of organic products in NZ by value. The DIRA governs Fonterra's supply relationships. Organic milk pricing and supply arrangements under DIRA must now align with OPPA operator approval status.</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Practical Interface</h4>
+            <p>An organic dairy farmer supplying Fonterra under a DIRA-regulated supply contract will need to maintain OPPA operator approval for organic claims. DIRA's organic milk premium structures effectively now depend on OPPA approval status.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/2001/0051/latest/DLM109320.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 5: PARALLEL REGIMES ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">⚡</span>
+    <h2>Parallel Regulatory Regimes</h2>
+  </div>
+
+  <div class="entry" id="apa">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Animal Products Act 1999</span>
+          <span class="entry-year">1999 No 93 · MPI</span>
+          <span class="tag tag-parallel">Parallel Regime</span>
+        </div>
+        <p class="entry-summary">Governs the processing and export of animal products (meat, dairy, seafood). Runs parallel to OPPA for animal product exporters — official assurance structures and recognised entity models are closely analogous.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Structural Parallels with OPPA</h4>
+            <ul>
+              <li>Both use "recognised entities" for third-party verification</li>
+              <li>Both require MPI-issued official assurances for export</li>
+              <li>Both use risk management programme / organic management plan approaches</li>
+              <li>Both place ultimate approval authority with MPI (not certifiers)</li>
+              <li>Enforcement officer powers are structured similarly</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Overlap for Organic Processors</h4>
+            <p>Organic meat, dairy, and seafood processors must hold both Animal Products Act registration and OPPA operator approval. Export of organic animal products requires official assurances under both Acts. Understanding both systems is essential for export-facing organic certifiers and operators.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/1999/0093/latest/DLM33502.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <div class="entry" id="biosecurity">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Biosecurity Act 1993</span>
+          <span class="entry-year">1993 No 95 · MPI</span>
+          <span class="tag tag-parallel">Parallel Regime</span>
+        </div>
+        <p class="entry-summary">Governs New Zealand's biosecurity border and pest management system. Intersects with OPPA on imports of organic products and organic inputs — biosecurity clearance is a pre-condition to organic import assessment.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Import Pathway Interface</h4>
+            <p>Under OPPA Part 2, the relevant chief executive may approve foreign organic product regimes for products imported into NZ. However, biosecurity import clearance is a prerequisite for any imported product regardless of organic status. Organic compost, biological inputs, seeds, and livestock imported for organic operations must clear both Biosecurity Act requirements and OPPA/ACVM requirements.</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Organic Inputs Consideration</h4>
+            <p>Many permitted organic inputs (e.g. certain composts, biostimulants, micro-organisms) face strict biosecurity import controls. The permissibility of an input under organic standards does not guarantee biosecurity clearance, creating a dual-gate system that operators must navigate.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/1993/0095/latest/DLM314623.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <div class="entry" id="fta">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Fair Trading Act 1986</span>
+          <span class="entry-year">1986 No 121 · MBIE / Commerce Commission</span>
+          <span class="tag tag-parallel">Parallel Regime</span>
+        </div>
+        <p class="entry-summary">Prohibits misleading and deceptive conduct in trade. Operates alongside OPPA as an additional legal liability for unjustified organic claims — OPPA does not displace Fair Trading Act exposure.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Relationship to OPPA</h4>
+            <p>OPPA creates a specific regulatory offence for describing a product as organic without operator approval or in breach of the standard. The Fair Trading Act independently prohibits misleading conduct in trade. A false organic claim may therefore be simultaneously an OPPA offence (MPI enforcement) and a Fair Trading Act breach (Commerce Commission enforcement).</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Pre-OPPA Landscape</h4>
+            <p>Before OPPA, the Fair Trading Act was the <em>only</em> legal recourse against unjustified organic claims, and it was rarely used for this purpose due to the difficulty of proving what "organic" meant. OPPA creates a clear standard against which Fair Trading Act claims can now be more readily assessed.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/1986/0121/latest/DLM96439.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 6: ENABLING / CONSTITUTIONAL ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">🏛</span>
+    <h2>Enabling &amp; Constitutional Framework</h2>
+  </div>
+
+  <div class="entry" id="leg">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Legislation Act 2019</span>
+          <span class="entry-year">2019 No 58 · PCO / Dep't PM &amp; Cabinet</span>
+          <span class="tag tag-enabling">Enabling / Constitutional</span>
+        </div>
+        <p class="entry-summary">Governs the form, publication, and interpretation of New Zealand legislation. OPPA's secondary legislation (the 2025 Regulations) derives its legal status and publication requirements from this Act. Also shapes Treaty of Waitangi obligations.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>Secondary Legislation Framework</h4>
+            <p>The Organic Products and Production Regulations 2025 and Organic Standards Regulations 2025 are "secondary legislation" as defined in <span class="section-ref">s.5 Legislation Act 2019</span>. Their publication, commencement, and disallowance procedures are all governed by this Act and the Secondary Legislation Act 2021.</p>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Treaty Obligations</h4>
+            <p>OPPA includes Māori consultation requirements before regulations are made, consistent with Treaty principles embodied across the NZ legislative framework and reflected in the Legislation Act's guidance on drafting standards.</p>
+          </div>
+        </div>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/2019/0058/latest/LMS59360.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <div class="entry" id="crown-ent">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">Crown Entities Act 2004</span>
+          <span class="entry-year">2004 No 115 · Dep't PM &amp; Cabinet</span>
+          <span class="tag tag-enabling">Enabling / Constitutional</span>
+        </div>
+        <p class="entry-summary">Governs the accountability and governance of Crown entities. Relevant to the status and obligations of MPI as the administering agency and to the governance of any advisory council established under OPPA Part 7.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-section">
+        <h4>Relevance</h4>
+        <p>OPPA Part 7 establishes an advisory council. The Crown Entities Act provides the constitutional underpinning for such bodies and their accountability to Ministers. MPI itself is a government department (not a Crown entity), but its recognised entities and advisory structures engage with this framework. Cost recovery under OPPA Part 4 is also constrained by broader Crown financial management principles.</p>
+      </div>
+      <a class="entry-link" href="https://www.legislation.govt.nz/act/public/2004/0115/latest/DLM329649.html" target="_blank">legislation.govt.nz →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TIER 7: INTERNATIONAL / EQUIVALENCE ═══════════════════════════════ -->
+  <div class="section-head">
+    <span class="section-icon">🌐</span>
+    <h2>International Trade &amp; Market Access Instruments</h2>
+  </div>
+
+  <div class="entry" id="internat">
+    <div class="entry-header" onclick="toggle(this)">
+      <span class="entry-toggle">▶</span>
+      <div class="entry-top">
+        <div class="entry-title-row">
+          <span class="entry-name">International Trade (Organic Equivalence) Arrangements</span>
+          <span class="entry-year">Ongoing · Not legislation — treaty-level instruments</span>
+          <span class="tag tag-parallel">Parallel Regime</span>
+        </div>
+        <p class="entry-summary">Bilateral and multilateral organic equivalence arrangements with the EU, UK, USA, and others. OPPA provides the domestic legal foundation for NZ to enter and maintain these arrangements by enabling MPI to issue official assurances and approve foreign regimes.</p>
+      </div>
+    </div>
+    <div class="entry-body">
+      <div class="body-grid">
+        <div>
+          <div class="body-section">
+            <h4>OPPA Powers Engaged</h4>
+            <ul>
+              <li><span class="section-ref">OPPA Part 2</span> — approval of foreign organic product regimes for imports</li>
+              <li><span class="section-ref">OPPA Part 3</span> — export requirements, restrictions, and official assurances to foreign governments</li>
+              <li>MPI may issue "statements of compliance" about NZ organic products</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="body-section">
+            <h4>Key Markets &amp; Status</h4>
+            <ul>
+              <li><strong>EU</strong> — equivalence negotiations ongoing post-OPPA commencement</li>
+              <li><strong>UK</strong> — separate negotiations post-Brexit</li>
+              <li><strong>USA</strong> — NZ producers exporting under USDA NOP rules</li>
+              <li><strong>China</strong> — separate bilateral arrangements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="body-section">
+        <h4>Note</h4>
+        <p>These are treaty-level or administrative arrangements, not NZ domestic legislation. However, they are the primary policy rationale for OPPA's creation and the framework that gives commercial value to OPPA operator approval for exporters.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>OPPA Legislative Wiki · Compiled March 2026</p>
+  <p>Reference document. Verify currency at legislation.govt.nz</p>
+</footer>
+
+<script>
+function toggle(headerEl) {
+  const entry = headerEl.closest('.entry');
+  const wasOpen = entry.classList.contains('open');
+  entry.classList.toggle('open', !wasOpen);
+}
+// Auto-open OPPA main entry
+document.querySelector('#oppa').classList.add('open');
+</script>
+</body>
+</html>
